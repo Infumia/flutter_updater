@@ -13,11 +13,7 @@ void main(List<String> args) async {
   final filePath = Directory(results.rest[1]);
   final exportPath = Directory(results.rest[2]);
   await copyDirectory(filePath, exportPath);
-  if (Platform.isWindows) {
-    Process.run(join(exportPath.absolute.path, originalFileName), []);
-  } else if (Platform.isLinux) {
-    Process.run(join(exportPath.absolute.path, originalFileName), []);
-  }
+  Process.run(join(exportPath.absolute.path, originalFileName), []);
 }
 
 Future<void> copyDirectory(Directory source, Directory destination) async {
