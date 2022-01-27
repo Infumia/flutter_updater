@@ -1,0 +1,26 @@
+name: Release
+
+on:
+  release:
+    types: [ published ]
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Setup Flutter
+        uses: hrishikesh-kadam/setup-flutter@v1
+
+      - name: Build
+        run: |
+          dart pub get
+          dart compile exe lib/main.dart --output ${{ github.workspace }}\output\updater.exe
+
+      - name: Upload files
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            ${{ github.workspace }}\output\updater.exe
