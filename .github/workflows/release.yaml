@@ -17,10 +17,10 @@ jobs:
       - name: Build
         run: |
           dart pub get
-          dart compile exe lib/main.dart --output ${{ github.workspace }}\output\updater.exe
+          dart compile exe lib/main.dart --output ${{ github.workspace }}\updater.exe
 
       - name: Upload files
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            ${{ github.workspace }}\output\updater.exe
+            ${{ github.workspace }}\updater.exe
